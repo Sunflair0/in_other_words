@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-import { useOktaAuth } from '@okta/okta-react';
+import { useOktaAuth } from 'react-router-dom';
 const { getTreasures, addTreasure, delTreasure, delAllTreasures} = require("../models/chest_fav.model");
 
 
