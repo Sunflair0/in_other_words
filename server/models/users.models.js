@@ -20,3 +20,6 @@ async function getByUsername(res, username) {
     return res.send(json);
   }
 }
+
+
+module.exports = { getByUsername};

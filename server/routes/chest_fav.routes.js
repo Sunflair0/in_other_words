@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-import { useOktaAuth } from 'react-router-dom';
+const auth = require("../middleware/auth.middleware");
 const { getTreasures, addTreasure, delTreasure, delAllTreasures} = require("../models/chest_fav.model");
 
 
@@ -12,8 +12,8 @@ router.get("/user", auth, (req, res) => {
 // /////I would like to add a treasure to my chest
 router.post("/add", auth, (req, res) => {
   const { treasure } = req.body;
-  if ( treasure && treasure.analogy_id) {
-    return addTreasure(res, req.user.id, treasure);
+  if ( treasure && treasure.term_id && treasure.text_ana && req.user_id) {
+    return addTreasure(res, req.user_id, treasure);
   }
   return res.send({
     success: false,
@@ -27,7 +27,6 @@ router.delete("/delete/:analogy_id", auth, (req, res) => {
   const { analogy_id } = req.params;
   return delTreasure(res, req.user.id, analogy_id);
 });
-
 
 // /////I would like to discard ALL my treasures
 router.delete("/delete/all/:user_id", auth, (req, res) => {
