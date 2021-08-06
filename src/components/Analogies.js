@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Splash_Search() {
+export default function Analogies() {
 return (
 <div>
 Analogies here

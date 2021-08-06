@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Splash_Search() {
+export default function Profile() {
 return (
 <div>
 Profile here
