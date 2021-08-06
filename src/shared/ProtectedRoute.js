@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { AuthContext } from ".../contexts/AuthContext";
 
 function ProtectedRoute({ path, currentUser, children }) {
-  const { username } = useContext(UserContext);
+  const { username } = useContext(AuthContext);
   if ((username && currentUser) || (!username && !currentUser)) {
     return <Route path={path}>{children}</Route>;
   } else {
-    return <Redirect to={currentUser ? "/login" : "/search"} />;
+    return <Redirect to={currentUser ? "/login" : "/splash_search"} />;
   }
 }
 

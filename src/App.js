@@ -11,8 +11,8 @@ import Signup from './components/Signup';
 import Splash_Search from './components/Splash_Search';
 import { Container } from "react-bootstrap"
 import { AuthProvider } from './contexts/AuthContext';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import ProtectedRoute from './shared/ProtectedRoutes';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import ProtectedRoute from './shared/ProtectedRoute';
 
 function App() {
 
@@ -25,9 +25,7 @@ function App() {
           <AuthProvider>
             <Switch>
 <ProtectedRoute path="/signup" component={Signup} />
-
 <ProtectedRoute exact path="/" component={Splash_Search} />
-
 <ProtectedRoute path="/adminpage" component={AdminPage} />
 <ProtectedRoute path="/profile" component={Profile} />
 <ProtectedRoute path="/analogies" component={Analogies} />
@@ -35,21 +33,13 @@ function App() {
 <ProtectedRoute path="/display" component={Display} />
 <ProtectedRoute path="/login" component={Login} />
 <ProtectedRoute path="/forgotpassword" component={ForgotPassword} />
-
-
-
-      
-              
+<Route path="*"><Redirect to="/login" />  </Route>
             </Switch>
-
           </AuthProvider>
-
-
         </Router>
       </div>
+
     </Container>
-
-
   );
 }
 
