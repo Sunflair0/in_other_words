@@ -1,9 +1,54 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { Card, Form, Button, Alert } from 'react-bootstrap'
+import { useAuth } from '../contexts/AuthContext'
+import {Link} from 'react-router-dom'
 
-export default function Splash_Search() {
-return (
-<div>
-Login here
+
+export default function Login() {
+	const emailRef = useRef()
+	const passwordRef = useRef()
+	const { signup } = useAuth()
+	const [error, setError] = useState('')
+	const [loading, setLoading] = useState(false)
+
+	async function handleSubmit(e) {
+		e.preventDefault()
+
+		try {
+			setError('')
+			setLoading(true)
+			await signup(emailRef.current.value.passwordRef.current.value)
+		} catch {
+			setError('Failed to create an account. Try again.')
+		}
+		setLoading(false)
+	}
+
+	return (
+		<>
+			<Card>
+				<Card.Body>
+					<h2 className="logintop mt-2 text-center">Log In</h2>				
+{error && <Alert variant="danger">{error}</Alert>}
+					<Form onSubmit={handleSubmit}>
+						<Form.Group id="email">
+							<Form.Label>Email</Form.Label>
+							<Form.Control type="email" ref={emailRef} required /></Form.Group>
+						<Form.Group id="password">
+							<Form.Label>Password</Form.Label>
+							<Form.Control type="password" ref={passwordRef} required />
+						</Form.Group>
+					<Button disabled={loading} className="w-100 mt-5" type="submit">Log In</Button>
+
+					</Form>
+				</Card.Body>
+			</Card>
+
+			<div className="logForm">
+				<div className="tagMess w-100">Need to Create an account? <Link to="/signup">Sign Up</Link>
 </div>
-)
+			</div>
+		</>
+
+	)
 }
