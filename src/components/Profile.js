@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { AuthContext } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -9,7 +9,7 @@ export default function Profile() {
 	const emailRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
-	const { currentUser, updatePassword, updateEmail } = useAuth()
+	const { currentUser, updatePassword, updateEmail } = AuthContext()
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
 	const history = useHistory()

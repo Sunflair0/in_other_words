@@ -1,13 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { useContext } from '../contexts/AuthContext'
+import { AuthContext } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 
 export default function Login() {
 	const emailRef = useRef()
 	const passwordRef = useRef()
-	const { login } = useContext()
+  const { login } = useContext(AuthContext)
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
 	const history = useHistory()
@@ -49,9 +49,9 @@ export default function Login() {
 				</Card.Body>
 			</Card>
 
-			
+			<div className="logForm">
 				<div className="tagMess w-100">Need to Create an account? <Link to="/signup">Sign Up</Link>
-				<div className="logForm"></div>
+				</div>
 			</div>
 		</>
 

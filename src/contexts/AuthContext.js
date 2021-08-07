@@ -1,17 +1,16 @@
 
-import React, { useContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useFetch } from 'react'
 import { auth } from "../firebase"
 
 
-const AuthContext = React.createContext()
-
-export default function useAuth() {
-	return useContext(AuthContext)
-}
+export const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState()
 	const [loading, setLoading]=useState(true)
+	const { callAPI: logoutAPI } = useFetch("GET");
+  	const { callAPI: validate } = useFetch("GET");
+
 
 function login(email, password) {
 return auth.signInWithEmailAndPassword(email, password)
