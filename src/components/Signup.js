@@ -10,7 +10,7 @@ export default function Signup() {
 	const { signup } = useAuth()
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
-	const history =useHistory()
+	const history = useHistory()
 
 
 	async function handleSubmit(e) {
@@ -19,6 +19,7 @@ export default function Signup() {
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
 			return setError('Passwords do not match')
 		}
+
 		try {
 			setError('')
 			setLoading(true)
@@ -34,8 +35,8 @@ export default function Signup() {
 		<>
 			<Card>
 				<Card.Body>
-					<h2 className="logintop mt-2 text-center">Signup</h2>				
-{error && <Alert variant="danger">{error}</Alert>}
+					<h2 className="logintop mt-2 text-center">Signup</h2>
+					{error && <Alert variant="danger">{error}</Alert>}
 					<Form onSubmit={handleSubmit}>
 						<Form.Group id="email">
 							<Form.Label>Email</Form.Label>

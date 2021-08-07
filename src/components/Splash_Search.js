@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom'
 export default function Splash_Search() {
 	const [error, setError] = useState("")
 	const { currentUser, logout } = useAuth("")
-	const history =useHistory()
+	const history = useHistory()
 
 
 	async function handleLogout() {
@@ -14,7 +14,7 @@ export default function Splash_Search() {
 
 		try {
 			await logout()
-			history.pushState('/login')
+			history.push('/login')
 		} catch {
 			setError('Failed to Log Out')
 		}
@@ -29,7 +29,8 @@ export default function Splash_Search() {
 				{error && <Alert variant="danger">{error}</Alert>}
 				<strong>Email:</strong> {currentUser.email}
 				<Link to="/chest_fav" className="btn btn-primary">Treasure Chest</Link>
-				<div className="tagMess w-100"><Button variant="link" onClick={handleLogout}>Log Out</Button>
+				<div className="tagMess w-100">
+					<Button variant="link" onClick={handleLogout}>Log Out</Button>
 				</div>
 			</div>
 

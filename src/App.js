@@ -10,7 +10,7 @@ import Profile from './components/Profile';
 import Signup from './components/Signup';
 import Splash_Search from './components/Splash_Search';
 import { Container } from "react-bootstrap"
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from '../contexts/AuthContext';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import ProtectedRoute from './shared/ProtectedRoute';
 
