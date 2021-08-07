@@ -2,13 +2,12 @@ const bcrypt = require("bcrypt");
 const query = require("../config/mysql.conf");
 const { v4: uuidv4 } = require("uuid");
 
-
-// /////I would like to see a sub-category
-async function getSubs(res, category_id) {
+// /////I would like to see all categories
+async function getCats(res, category) {
   let json = { success: false, error: null, data: null };
   try {
-    const anaG = await query("SELECT FROM sub_category WHERE category_id = ?", [category_id]);
-    json = { ...json, success: true, data: anaG };
+    const cats = await query("SELECT * FROM category", [category]);
+    json = { ...json, success: true, data: cats };
   } catch (err) {
     json.error = "Something isn't right";
   } finally {
@@ -16,11 +15,24 @@ async function getSubs(res, category_id) {
   }
 }
 
-// /////I would like to see a term
-async function getTerm(res, term_id, definition) {
+// /////I would like to see sub-categories
+async function getSubs(res, category_id) {
   let json = { success: false, error: null, data: null };
   try {
-    const term = await query("SELECT FROM term_id WHERE term_id = ? AND definition = ?", [term_id, definition]);
+    const subC = await query("SELECT * FROM sub_category", [category_id]);
+    json = { ...json, success: true, data: subC };
+  } catch (err) {
+    json.error = "Something isn't right";
+  } finally {
+    return res.send(json);
+  }
+}
+
+// /////I would like to see terms and definitions
+async function getTerm(res, text_term, definition) {
+  let json = { success: false, error: null, data: null };
+  try {
+    const term = await query("SELECT text_term, definition FROM term", [text_term, definition]);
     json = { ...json, success: true, data: term };
   } catch (err) {
     json.error = "Something isn't right";
@@ -29,11 +41,11 @@ async function getTerm(res, term_id, definition) {
   }
 }
 
-// /////I would like to see an analogy
+// /////I would like to see analogies
 async function getAnaG(res, analogy_id, text_ana) {
   let json = { success: false, error: null, data: null };
   try {
-    const anaG = await query("SELECT FROM analogy_id WHERE text_ana = ?", [analogy_id, text_ana]);
+    const anaG = await query("SELECT text_ana from Analogy", [text_ana]);
     json = { ...json, success: true, data: anaG };
   } catch (err) {
     json.error = "Something isn't right";
@@ -42,4 +54,4 @@ async function getAnaG(res, analogy_id, text_ana) {
   }
 }
 
-module.exports = { getSubs, getTerm, getAnaG};
+module.exports = {getCats, getSubs, getTerm, getAnaG};
