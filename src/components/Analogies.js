@@ -13,6 +13,7 @@ Analogies here
 
 
 <p>{choice}</p>
+<div>Choose an analogy{setChoice}</div>
 
 
 </>
