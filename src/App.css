@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+
+.logintop {
+text-align: center;
+border-radius: 150px;
+padding: 35px;
+height: 75px;
+margin-left: auto;
+margin-right: auto;
+font-weight: 600;
+width: 135px;
+height: 135px;
+background-image: "/asset/iow.png";
+border: 1px dotted #cacacc;
+box-shadow: 4px 4px 10px #cacacc;
+text-align: center;
+justify-content: center;
+}
+
+.tagMess {
+margin-left: 1em;
+font-weight: 500;
+}
