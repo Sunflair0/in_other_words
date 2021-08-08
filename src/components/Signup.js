@@ -1,16 +1,16 @@
 import React, { useRef, useState } from 'react'
 import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { AuthContext } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 export default function Signup() {
 	const emailRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
-	const { signup } = useAuth()
+	const { signup } = AuthContext()
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
-	const history =useHistory()
+	const history = useHistory()
 
 
 	async function handleSubmit(e) {
@@ -19,6 +19,7 @@ export default function Signup() {
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
 			return setError('Passwords do not match')
 		}
+
 		try {
 			setError('')
 			setLoading(true)
@@ -34,8 +35,8 @@ export default function Signup() {
 		<>
 			<Card>
 				<Card.Body>
-					<h2 className="logintop mt-2 text-center">Signup</h2>				
-{error && <Alert variant="danger">{error}</Alert>}
+					<h2 className="logintop mt-2 text-center">Signup</h2>
+					{error && <Alert variant="danger">{error}</Alert>}
 					<Form onSubmit={handleSubmit}>
 						<Form.Group id="email">
 							<Form.Label>Email</Form.Label>

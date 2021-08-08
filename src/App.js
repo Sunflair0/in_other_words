@@ -22,21 +22,21 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-<Route path="/signup" component={Signup} />
+{/* <Route path="/signup" component={Signup} /> */}
 
 <Route exact path="/" component={Splash_Search} />
 
-<Route exact 
+<Route 
 path="/adminpage" component={AdminPage} />
-<Route exact 
+<Route 
 path="/analogies" component={Analogies} />
-<Route exact 
+<Route 
 path="/chest_fav" component={Chest_Fav} />
-<Route exact 
+<Route 
 path="/display" component={Display} />
-<Route exact 
-path="/login" component={Login} />
-<Route exact 
+{/* <Route exact 
+path="/login" component={Login} /> */}
+<Route 
 path="/profile" component={Profile} />
 
       

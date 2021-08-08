@@ -9,16 +9,22 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "babel-loader": "^8.2.2",
+    "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.0",
-    "firebase": "^8.8.1",
     "ignore-styles": "^5.0.1",
+    "passport": "^0.4.1",
+    "passport-jwt-cookiecombo": "^1.0.5",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.0.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.1",
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
@@ -26,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ssr": "node server/index.js"
+    "ssr": "babel-node server/index.js"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +51,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
