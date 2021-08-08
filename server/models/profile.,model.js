@@ -1,7 +1,4 @@
-const bcrypt = require("bcrypt");
 const query = require("../config/mysql.conf");
-const { v4: uuidv4 } = require("uuid");
-
 
 // /////I would like to see all my treasures(favorites)
 async function getCites(res, user_id) {

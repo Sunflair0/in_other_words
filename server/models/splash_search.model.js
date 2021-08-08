@@ -1,6 +1,4 @@
-const bcrypt = require("bcrypt");
 const query = require("../config/mysql.conf");
-const { v4: uuidv4 } = require("uuid");
 
 // /////I would like to see all categories
 async function getCats(res, category) {
@@ -42,7 +40,7 @@ async function getTerm(res, text_term, definition) {
 }
 
 // /////I would like to see analogies
-async function getAnaG(res, analogy_id, text_ana) {
+async function getAnaG(res, text_ana) {
   let json = { success: false, error: null, data: null };
   try {
     const anaG = await query("SELECT text_ana from Analogy", [text_ana]);
