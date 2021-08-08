@@ -5,12 +5,14 @@ import Analogies from './components/Analogies';
 import Chest_Fav from './components/Chest_Fav';
 import Display from './components/Display';
 import Login from './components/Login';
+import ForgotPassword from './components/ForgotPassword';
 import Profile from './components/Profile';
 import Signup from './components/Signup';
 import Splash_Search from './components/Splash_Search';
 import { Container } from "react-bootstrap"
 import { AuthProvider } from './contexts/AuthContext';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import ProtectedRoute from './shared/ProtectedRoute';
 
 function App() {
 
@@ -22,35 +24,22 @@ function App() {
         <Router>
           <AuthProvider>
             <Switch>
-<Route path="/signup" component={Signup} />
-
-<Route exact path="/" component={Splash_Search} />
-
-<Route exact 
-path="/adminpage" component={AdminPage} />
-<Route exact 
-path="/analogies" component={Analogies} />
-<Route exact 
-path="/chest_fav" component={Chest_Fav} />
-<Route exact 
-path="/display" component={Display} />
-<Route exact 
-path="/login" component={Login} />
-<Route exact 
-path="/profile" component={Profile} />
-
-      
-              
+<ProtectedRoute path="/signup" component={Signup} />
+<ProtectedRoute exact path="/" component={Splash_Search} />
+<ProtectedRoute path="/adminpage" component={AdminPage} />
+<ProtectedRoute path="/profile" component={Profile} />
+<ProtectedRoute path="/analogies" component={Analogies} />
+<ProtectedRoute path="/chest_fav" component={Chest_Fav} />
+<ProtectedRoute path="/display" component={Display} />
+<ProtectedRoute path="/login" component={Login} />
+<ProtectedRoute path="/forgotpassword" component={ForgotPassword} />
+<Route path="*"><Redirect to="/login" />  </Route>
             </Switch>
-
           </AuthProvider>
-
-
         </Router>
       </div>
+
     </Container>
-
-
   );
 }
 

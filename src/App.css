@@ -59,3 +59,20 @@ justify-content: center;
 margin-left: 1em;
 font-weight: 500;
 }
+
+
+      
+.pinkbar{
+border-top: 5px;
+border-top-color: hsl(225, 4%, 37%);
+border-top-style: solid;
+
+background-color: hsl(323, 64%, 22%);
+height: 70px;
+width: 100%;
+
+border-bottom: 5px;
+border-bottom-color: hsl(225, 4%, 37%);
+border-bottom-style: solid;
+}
+
