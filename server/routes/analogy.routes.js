@@ -3,7 +3,6 @@ const router = express.Router();
 const auth = require("../middleware/auth.middleware");
 const { addTerm, delTerm, editTerm} = require("../models/analogy.model");
 
-const query = require("../config/mysql.conf");
 
 
 // /////I would like to add a term (with sub and definition)
