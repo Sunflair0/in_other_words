@@ -1,63 +1,63 @@
-import React, { useRef, useState } from 'react'
-import { Card, Form, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState, useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
+import useFetch from "../hooks/useFetch";
+// import { useHistory } from "react-router";
 
-export default function Signup() {
-	const emailRef = useRef()
-	const passwordRef = useRef()
-	const passwordConfirmRef = useRef()
-	const { signup } = useAuth()
-	const [error, setError] = useState('')
-	const [loading, setLoading] = useState(false)
-	const history =useHistory()
+const Signup = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { callAPI: signupCall } = useFetch("POST");
+  const [error, setError] = useState(null);
+  // const history = useHistory();
+  return (
+    <>
+      <h2 className="text-center">Signup</h2>
+      <form className="form">
+        <div className="form-field flex-wrap">
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
+          />
+        </div>
+        <div className="form-field flex-wrap">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+        </div>
 
+        <button
+          className="btn"
+          onClick={async (e) => {
+            e.preventDefault();
+            if (
+              username.length > 4 &&
+              password.length > 4 &&
+              username.length <= 20 &&
+              password.length <= 20
+            ) {
+              setError(null);
+              let res = await signupCall("/api/users/signup", {
+                username,
+                password,
+              });
+              if (res.error) {
+                return setError(res.error);
+              }
+            }
+          }}
+        >
+          Signup
+        </button>
+      </form>
+      <div>{error}</div>
+    </>
+  );
+};
 
-	async function handleSubmit(e) {
-		e.preventDefault()
-
-		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-			return setError('Passwords do not match')
-		}
-		try {
-			setError('')
-			setLoading(true)
-			await signup(emailRef.current.value.passwordRef.current.value)
-			history.push("/")
-		} catch {
-			setError('Failed to create an account. Try again.')
-		}
-		setLoading(false)
-	}
-
-	return (
-		<>
-			<Card>
-				<Card.Body>
-					<h2 className="logintop mt-2 text-center">Signup</h2>				
-{error && <Alert variant="danger">{error}</Alert>}
-					<Form onSubmit={handleSubmit}>
-						<Form.Group id="email">
-							<Form.Label>Email</Form.Label>
-							<Form.Control type="email" ref={emailRef} required /></Form.Group>
-						<Form.Group id="password">
-							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" ref={passwordRef} required />
-						</Form.Group>
-						<Form.Group id="password-confirm">
-							<Form.Label>Password Confirmation</Form.Label>
-							<Form.Control type="password" ref={passwordConfirmRef} required />
-						</Form.Group>
-						<Button disabled={loading} className="w-100 mt-5" type="submit">Sign Up</Button>
-
-					</Form>
-				</Card.Body>
-			</Card>
-
-			<div className="logForm">
-				<div className="tagMess w-100">Already have an account? <Link to="/login">Log In</Link></div>
-			</div>
-		</>
-
-	)
-}
+export default Signup;
