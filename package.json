@@ -12,6 +12,8 @@
     "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.0",
+    "create-react-app": "^5.0.1",
+    "firebase": "^8.8.1",
     "ignore-styles": "^5.0.1",
     "passport": "^0.4.1",
     "passport-jwt-cookiecombo": "^1.0.5",
